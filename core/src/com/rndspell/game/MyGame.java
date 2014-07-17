@@ -13,3 +13,4 @@ public class MyGame extends Game {
 	}
 
 }
+
