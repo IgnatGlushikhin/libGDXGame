@@ -3,6 +3,7 @@ package com.rndspell.game.screens;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.rndspell.game.GameAssetManager;
 
 public class LoadScreen implements Screen {
@@ -10,7 +11,7 @@ public class LoadScreen implements Screen {
     public LoadScreen(){}
 
     private void loadAssets(){
-        GameAssetManager.getInstance().load("badlogic.jpg", Texture.class);
+        GameAssetManager.getInstance().load("textures/textures.atlas", TextureAtlas.class);
     }
 
     @Override
