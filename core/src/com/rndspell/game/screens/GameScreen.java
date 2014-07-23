@@ -42,12 +42,12 @@ public class GameScreen implements Screen {
         engine.addSystem(new MovementSystem());
         engine.addSystem(new RenderSystem(camera));
 
-        Entity player = new Entity();
-        player.add(new PositionComponent());
-        player.add(new MovementComponent(8f, 32f));
-        player.add(new RenderComponent(new Vector2()));
+        Entity entity = new Entity();
+        entity.add(new PositionComponent());
+        entity.add(new MovementComponent(8f, 32f));
+        entity.add(new RenderComponent(new Vector2()));
 
-        engine.addEntity(player);
+        engine.addEntity(entity);
     }
 
     @Override
