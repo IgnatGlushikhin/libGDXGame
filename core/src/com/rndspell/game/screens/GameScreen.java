@@ -28,7 +28,6 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         camera = new OrthographicCamera(640, 480);
-        camera.position.set(-64, 64, 0);
         engine = new Engine();
 
         FrictionSystem frictionSystem = new FrictionSystem();
@@ -58,7 +57,7 @@ public class GameScreen implements Screen {
 
         Entity player1 = new Entity();
         player1.add(new PositionComponent(new Vector2(64, 128)));
-        player1.add(new MovementComponent(256f, 128f));
+        player1.add(new MovementComponent(256f, 256f));
         player1.add(new BoundsComponent(64f, 64f, new Vector2(-32f, -32f), true));
         player1.add(new RenderComponent(GameAssetManager.getInstance().get("textures/textures.atlas", TextureAtlas.class).findRegion("smile"), 64, 64, new Vector2(-32, -32)));
         player1.add(new InputControlComponent(true));
