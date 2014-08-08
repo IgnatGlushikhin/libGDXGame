@@ -19,22 +19,27 @@ public class FrictionSystem extends EntitySystem {
     private ImmutableIntMap<Entity> entities;
     private Listener<CollisionEvent> listener;
 
-    private Array<Entity> collidedEntities = new Array<Entity>();
-    private float frictionValue = 0;
+    private float frictionValue = -1;
+    private Entity targetEntity;
+
+    private ArrayMap<Entity, Float> frictionMap = new ArrayMap<Entity, Float>();
 
     public FrictionSystem() {
         super();
         listener = new Listener<CollisionEvent>() {
             @Override
             public void receive(Signal<CollisionEvent> signal, CollisionEvent collisionEvent) {
-                collidedEntities = collisionEvent.getEntities();
-                for (Entity entity: collidedEntities) {
+                frictionValue = -1;
+                targetEntity = null;
+                for (Entity entity: collisionEvent.getEntities()) {
                     if (entity.hasComponent(FrictionComponent.class)) {
                         frictionValue = entity.getComponent(FrictionComponent.class).getFrictionValue();
                     }
-
+                    if (entity.hasComponent(MovementComponent.class)) {
+                        targetEntity = entity;
+                    }
                 }
-
+                if (targetEntity != null && frictionValue != -1) frictionMap.put(targetEntity, frictionValue);
             }
         };
         ListenerManager.getInstance().getListeners().get(CollisionEvent.class).add(listener);
@@ -48,7 +53,8 @@ public class FrictionSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         MovementComponent movement;
-        for (Entity entity: collidedEntities) {
+
+        for (Entity entity: frictionMap.keys()) {
             if (entity.hasComponent(MovementComponent.class)) {
                 movement = entity.getComponent(MovementComponent.class);
                 movement.getVelocity().add(movement.getVelocity().cpy().nor().scl(-frictionValue * deltaTime));
@@ -57,6 +63,7 @@ public class FrictionSystem extends EntitySystem {
 //                }
             }
         }
-        collidedEntities.clear();
+
+        frictionMap.clear();
     }
 }
