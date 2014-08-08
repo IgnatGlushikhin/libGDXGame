@@ -17,3 +17,10 @@ null
   orig: 32, 32
   offset: 0, 0
   index: -1
+smile
+  rotate: false
+  xy: 259, 259
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

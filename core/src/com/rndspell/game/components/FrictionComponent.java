@@ -1,16 +1,15 @@
 package com.rndspell.game.components;
 
 import com.badlogic.ashley.core.Component;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
-public class GravityComponent extends Component implements Json.Serializable {
+public class FrictionComponent extends Component implements Json.Serializable {
 
-    private Vector2 gravity = new Vector2();
+    private float frictionValue;
 
-    public GravityComponent(Vector2 gravity){
-        this.gravity = gravity;
+    public FrictionComponent(float frictionValue){
+        this.frictionValue = frictionValue;
     }
 
     @Override
@@ -20,14 +19,15 @@ public class GravityComponent extends Component implements Json.Serializable {
 
     @Override
     public void read(Json json, JsonValue jsonData) {
-        json.readField(this, "gravity", jsonData);
+        json.readField(this, "frictionValue", jsonData);
     }
 
     // GETTERS //
 
-    public Vector2 getGravity() {
-        return gravity;
+    public float getFrictionValue() {
+        return frictionValue;
     }
 
     // END GETTERS //
+
 }

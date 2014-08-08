@@ -9,10 +9,6 @@ public class InputControlComponent extends Component implements Json.Serializabl
 
     private boolean controllable;
 
-    public InputControlComponent() {
-        super();
-    }
-
     public InputControlComponent(boolean controllable){
         this.controllable = controllable;
     }

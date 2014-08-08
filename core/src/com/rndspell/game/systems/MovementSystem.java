@@ -19,7 +19,7 @@ public class MovementSystem extends IteratingSystem {
         MovementComponent movement = entity.getComponent(MovementComponent.class);
 
         movement.getVelocity().add(movement.getAcceleration().cpy().scl(deltaTime));
-        if(movement.getVelocity().len() > movement.getMaxVelocity()){
+        if(movement.getVelocity().len2() >= movement.getMaxVelocity()){
             movement.getVelocity().limit(movement.getMaxVelocity());
         }
         position.getPosition().add(movement.getVelocity().cpy().scl(deltaTime));
