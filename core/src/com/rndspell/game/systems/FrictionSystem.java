@@ -57,7 +57,7 @@ public class FrictionSystem extends EntitySystem {
         for (Entity entity: frictionMap.keys()) {
             if (entity.hasComponent(MovementComponent.class)) {
                 movement = entity.getComponent(MovementComponent.class);
-                movement.getVelocity().add(movement.getVelocity().cpy().nor().scl(-frictionValue * deltaTime));
+                movement.getVelocity().add(movement.getVelocity().cpy().nor().scl(-frictionMap.get(entity) * deltaTime));
 //                if (movement.getAcceleration().epsilonEquals(0, 0, 1)) {
 //                    movement.getVelocity().add(movement.getVelocity().cpy().nor().scl(-frictionValue * deltaTime));
 //                }
